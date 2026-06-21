@@ -53,3 +53,5 @@ msbuild.wrn
 .DS_Store
 Thumbs.db
 desktop.ini
+
+.fake
