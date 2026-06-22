@@ -1,0 +1,31 @@
+@Source_HostAddress = http://localhost:5111
+
+### Opaque Facade — Place an order
+POST {{Source_HostAddress}}/opaque/PlaceOrder
+Content-Type: application/json
+Accept: application/json
+
+{
+  "productId": "PROD-001",
+  "quantity": 2
+}
+
+### Opaque Facade — Check order status
+GET {{Source_HostAddress}}/opaque/CheckOrderStatus/1
+Accept: application/json
+
+### Transparent Facade — Place an order
+POST {{Source_HostAddress}}/transparent/PlaceOrder
+Content-Type: application/json
+Accept: application/json
+
+{
+  "productId": "PROD-001",
+  "quantity": 22
+}
+
+### Transparent Facade — Check order status
+GET {{Source_HostAddress}}/transparent/CheckOrderStatus/1
+Accept: application/json
+
+###
