@@ -1,6 +1,32 @@
+// Approval thresholds: 0-1000 -> Manager, 1001-5000 -> Director, 5000+ -> CEO
+
 @Source_HostAddress = http://localhost:5057
 
-GET {{Source_HostAddress}}/weatherforecast/
-Accept: application/json
+### Manager approves (<= 1000)
+POST {{Source_HostAddress}}/request
+Content-Type: application/json
+
+{
+  "userRole": "Employee",
+  "amount": 800
+}
+
+### Director approves (<= 5000)
+POST {{Source_HostAddress}}/request
+Content-Type: application/json
+
+{
+  "userRole": "Employee",
+  "amount": 3000
+}
+
+### CEO approves (> 5000)
+POST {{Source_HostAddress}}/request
+Content-Type: application/json
+
+{
+  "userRole": "Employee",
+  "amount": 9000
+}
 
 ###
