@@ -1,6 +1,19 @@
 @Source_HostAddress = http://localhost:5282
 
-GET {{Source_HostAddress}}/weatherforecast/
-Accept: application/json
+### Single-name handler: claimed by AlarmTriggeredHandler (first link)
+POST {{Source_HostAddress}}/messages/AlarmTriggered
 
-###
+### Single-name handler: passes two links, claimed by AlarmStoppedHandler
+POST {{Source_HostAddress}}/messages/AlarmStopped
+
+### Single-name handler with a payload (?payload= binds to Message.Payload)
+POST {{Source_HostAddress}}/messages/AlarmPaused?payload=snooze-5min
+
+### Multi-name handler: SomeMultiHandler owns Foo / Bar / Baz
+POST {{Source_HostAddress}}/messages/Foo
+
+### Multi-name handler: same handler, different name
+POST {{Source_HostAddress}}/messages/Baz?payload=hello
+
+### Unknown name: falls off the end of the chain, nothing handles it
+POST {{Source_HostAddress}}/messages/Unknown
